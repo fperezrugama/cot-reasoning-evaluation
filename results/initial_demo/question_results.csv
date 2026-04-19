@@ -1,0 +1,16 @@
+question_id,category,method,question,gold_answer,predicted_answer,correct,error_type
+q1,arithmetic,standard,Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?,11,14 tennis balls,False,calculation_error
+q1,arithmetic,cot,Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?,11,5 + 6 = 11 tennis balls.,True,correct
+q1,arithmetic,cot_self_consistency,Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?,11,Roger has 11 tennis balls now.,True,correct
+q2,arithmetic,standard,A cafeteria had 23 apples. It used 20 to make lunch and then bought 6 more. How many apples does it have now?,9,29,False,calculation_error
+q2,arithmetic,cot,A cafeteria had 23 apples. It used 20 to make lunch and then bought 6 more. How many apples does it have now?,9,The cafeteria has 9 apples now.,True,correct
+q2,arithmetic,cot_self_consistency,A cafeteria had 23 apples. It used 20 to make lunch and then bought 6 more. How many apples does it have now?,9,The cafeteria has 9 apples now.,True,correct
+q3,arithmetic,standard,A store had 64 puppies. It sold 28 and placed the rest into cages with 4 puppies in each cage. How many cages were needed?,9,16 cages were needed.,False,calculation_error
+q3,arithmetic,cot,A store had 64 puppies. It sold 28 and placed the rest into cages with 4 puppies in each cage. How many cages were needed?,9,9,True,correct
+q3,arithmetic,cot_self_consistency,A store had 64 puppies. It sold 28 and placed the rest into cages with 4 puppies in each cage. How many cages were needed?,9,9 cages were needed.,True,correct
+q4,rate_reasoning,standard,"If a person walks 2 miles in 30 minutes, how many miles do they walk in 90 minutes at the same speed?",6,90,False,calculation_error
+q4,rate_reasoning,cot,"If a person walks 2 miles in 30 minutes, how many miles do they walk in 90 minutes at the same speed?",6,They walk 6 miles.,True,correct
+q4,rate_reasoning,cot_self_consistency,"If a person walks 2 miles in 30 minutes, how many miles do they walk in 90 minutes at the same speed?",6,They walk 6 miles.,True,correct
+q5,counting,standard,Tom has 3 red marbles and 4 blue marbles. He gives 2 blue marbles away. How many marbles does he have left in total?,5,Tom has 7 marbles left.,False,calculation_error
+q5,counting,cot,Tom has 3 red marbles and 4 blue marbles. He gives 2 blue marbles away. How many marbles does he have left in total?,5,Tom has 5 marbles left.,True,correct
+q5,counting,cot_self_consistency,Tom has 3 red marbles and 4 blue marbles. He gives 2 blue marbles away. How many marbles does he have left in total?,5,Tom has 5 marbles left.,True,correct

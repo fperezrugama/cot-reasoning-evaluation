@@ -1,0 +1,37 @@
+question_id,category,method,question,gold_answer,predicted_answer,correct,error_type
+q1,arithmetic,standard,Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?,11,14 tennis balls,False,calculation_error
+q1,arithmetic,cot,Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?,11,5 + 6 = 11 tennis balls.,True,correct
+q1,arithmetic,cot_self_consistency,Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?,11,Roger has 11 tennis balls now.,True,correct
+q2,arithmetic,standard,A cafeteria had 23 apples. It used 20 to make lunch and then bought 6 more. How many apples does it have now?,9,29,False,calculation_error
+q2,arithmetic,cot,A cafeteria had 23 apples. It used 20 to make lunch and then bought 6 more. How many apples does it have now?,9,The cafeteria has 9 apples now.,True,correct
+q2,arithmetic,cot_self_consistency,A cafeteria had 23 apples. It used 20 to make lunch and then bought 6 more. How many apples does it have now?,9,The cafeteria has 9 apples now.,True,correct
+q3,arithmetic,standard,A store had 64 puppies. It sold 28 and placed the rest into cages with 4 puppies in each cage. How many cages were needed?,9,16 cages were needed.,False,calculation_error
+q3,arithmetic,cot,A store had 64 puppies. It sold 28 and placed the rest into cages with 4 puppies in each cage. How many cages were needed?,9,9,True,correct
+q3,arithmetic,cot_self_consistency,A store had 64 puppies. It sold 28 and placed the rest into cages with 4 puppies in each cage. How many cages were needed?,9,9 cages were needed.,True,correct
+q4,rate_reasoning,standard,"If a person walks 2 miles in 30 minutes, how many miles do they walk in 90 minutes at the same speed?",6,90,False,calculation_error
+q4,rate_reasoning,cot,"If a person walks 2 miles in 30 minutes, how many miles do they walk in 90 minutes at the same speed?",6,They walk 6 miles.,True,correct
+q4,rate_reasoning,cot_self_consistency,"If a person walks 2 miles in 30 minutes, how many miles do they walk in 90 minutes at the same speed?",6,The person walks 6 miles in 90 minutes at the same speed.,True,correct
+q5,counting,standard,Tom has 3 red marbles and 4 blue marbles. He gives 2 blue marbles away. How many marbles does he have left in total?,5,Tom has 7 marbles left.,False,calculation_error
+q5,counting,cot,Tom has 3 red marbles and 4 blue marbles. He gives 2 blue marbles away. How many marbles does he have left in total?,5,Tom has 5 marbles left.,True,correct
+q5,counting,cot_self_consistency,Tom has 3 red marbles and 4 blue marbles. He gives 2 blue marbles away. How many marbles does he have left in total?,5,Tom has 5 marbles left.,True,correct
+q6,symbolic,standard,"If all roses are flowers and some flowers fade quickly, can we conclude that some roses fade quickly? Answer yes or no.",No,Yes,False,format_error
+q6,symbolic,cot,"If all roses are flowers and some flowers fade quickly, can we conclude that some roses fade quickly? Answer yes or no.",No,"Yes, some roses may fade quickly because all roses are a type of flower, and some flowers (including roses) have the property of fading quickly.",False,other_error
+q6,symbolic,cot_self_consistency,"If all roses are flowers and some flowers fade quickly, can we conclude that some roses fade quickly? Answer yes or no.",No,"Yes, it can be concluded that some roses fade quickly.",False,reasoning_error
+q7,symbolic,standard,"If every student in the class submitted the assignment and Maya is a student in the class, did Maya submit the assignment? Answer yes or no.",Yes,Yes,True,correct
+q7,symbolic,cot,"If every student in the class submitted the assignment and Maya is a student in the class, did Maya submit the assignment? Answer yes or no.",Yes,"Yes, since every student in the class submitted the assignment and Maya is a student in the class, it can be inferred that Maya also submitted the assignment.",True,correct
+q7,symbolic,cot_self_consistency,"If every student in the class submitted the assignment and Maya is a student in the class, did Maya submit the assignment? Answer yes or no.",Yes,"Yes, if every student in the class submitted the assignment, then Maya must have submitted the assignment as well since she is a student in the class.",True,correct
+q8,multi_step,standard,"A train travels 60 miles in 2 hours. At the same speed, how far will it travel in 5 hours?",150,150 miles,True,correct
+q8,multi_step,cot,"A train travels 60 miles in 2 hours. At the same speed, how far will it travel in 5 hours?",150,The train will travel 150 miles in 5 hours.,True,correct
+q8,multi_step,cot_self_consistency,"A train travels 60 miles in 2 hours. At the same speed, how far will it travel in 5 hours?",150,The train will travel 150 miles in 5 hours.,True,correct
+q9,difference,standard,There are 15 trees in a grove. Workers plant trees until there are 21 trees. How many trees did they plant?,6,6,True,correct
+q9,difference,cot,There are 15 trees in a grove. Workers plant trees until there are 21 trees. How many trees did they plant?,6,21 - 15 = 6 trees were planted.,True,correct
+q9,difference,cot_self_consistency,There are 15 trees in a grove. Workers plant trees until there are 21 trees. How many trees did they plant?,6,21 - 15 = 6,True,correct
+q10,division,standard,A ribbon is 48 inches long. It is cut into pieces of 6 inches each. How many pieces are made?,8,8 pieces,True,correct
+q10,division,cot,A ribbon is 48 inches long. It is cut into pieces of 6 inches each. How many pieces are made?,8,8 pieces are made.,True,correct
+q10,division,cot_self_consistency,A ribbon is 48 inches long. It is cut into pieces of 6 inches each. How many pieces are made?,8,8 pieces are made.,True,correct
+q11,multi_step,standard,A book costs 12 dollars. A student buys 3 books and then uses a coupon for 6 dollars off the total. How much does the student pay?,30,The student pays $30.,True,correct
+q11,multi_step,cot,A book costs 12 dollars. A student buys 3 books and then uses a coupon for 6 dollars off the total. How much does the student pay?,30,The student pays $30.,True,correct
+q11,multi_step,cot_self_consistency,A book costs 12 dollars. A student buys 3 books and then uses a coupon for 6 dollars off the total. How much does the student pay?,30,The student pays $30.,True,correct
+q12,comparison,standard,Lena scored 14 points in the first game and 9 points in the second game. How many more points did she score in the first game than in the second?,5,Lena scored 5 more points in the first game than in the second.,True,correct
+q12,comparison,cot,Lena scored 14 points in the first game and 9 points in the second game. How many more points did she score in the first game than in the second?,5,Difference = 14 - 9 = 5,True,correct
+q12,comparison,cot_self_consistency,Lena scored 14 points in the first game and 9 points in the second game. How many more points did she score in the first game than in the second?,5,Difference in points = 14 - 9 = 5.,True,correct

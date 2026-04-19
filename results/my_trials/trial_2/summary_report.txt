@@ -1,0 +1,83 @@
+============================================================
+CHAIN-OF-THOUGHT EXPERIMENT SUMMARY
+============================================================
+
+standard: accuracy=0.500, correct=6/12
+cot: accuracy=0.917, correct=11/12
+cot_self_consistency: accuracy=0.917, correct=11/12
+
+============================================================
+PER-QUESTION RESULTS
+============================================================
+
+[q1] Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?
+Gold answer: 11
+  standard: predicted=14 tennis balls | correct=False | error_type=calculation_error
+  cot: predicted=5 + 6 = 11 tennis balls. | correct=True | error_type=correct
+  cot_self_consistency: predicted=Roger has 11 tennis balls now. | correct=True | error_type=correct
+
+[q10] A ribbon is 48 inches long. It is cut into pieces of 6 inches each. How many pieces are made?
+Gold answer: 8
+  standard: predicted=8 pieces | correct=True | error_type=correct
+  cot: predicted=8 pieces are made. | correct=True | error_type=correct
+  cot_self_consistency: predicted=8 pieces are made. | correct=True | error_type=correct
+
+[q11] A book costs 12 dollars. A student buys 3 books and then uses a coupon for 6 dollars off the total. How much does the student pay?
+Gold answer: 30
+  standard: predicted=The student pays $30. | correct=True | error_type=correct
+  cot: predicted=The student pays $30. | correct=True | error_type=correct
+  cot_self_consistency: predicted=30 | correct=True | error_type=correct
+
+[q12] Lena scored 14 points in the first game and 9 points in the second game. How many more points did she score in the first game than in the second?
+Gold answer: 5
+  standard: predicted=Lena scored 5 more points in the first game than in the second. | correct=True | error_type=correct
+  cot: predicted=Difference = 14 - 9 = 5 | correct=True | error_type=correct
+  cot_self_consistency: predicted=Lena scored 5 more points in the first game than in the second. | correct=True | error_type=correct
+
+[q2] A cafeteria had 23 apples. It used 20 to make lunch and then bought 6 more. How many apples does it have now?
+Gold answer: 9
+  standard: predicted=29 | correct=False | error_type=calculation_error
+  cot: predicted=The cafeteria has 9 apples now. | correct=True | error_type=correct
+  cot_self_consistency: predicted=The cafeteria has 9 apples now. | correct=True | error_type=correct
+
+[q3] A store had 64 puppies. It sold 28 and placed the rest into cages with 4 puppies in each cage. How many cages were needed?
+Gold answer: 9
+  standard: predicted=16 cages were needed. | correct=False | error_type=calculation_error
+  cot: predicted=9 | correct=True | error_type=correct
+  cot_self_consistency: predicted=9 cages were needed. | correct=True | error_type=correct
+
+[q4] If a person walks 2 miles in 30 minutes, how many miles do they walk in 90 minutes at the same speed?
+Gold answer: 6
+  standard: predicted=90 | correct=False | error_type=calculation_error
+  cot: predicted=They walk 6 miles. | correct=True | error_type=correct
+  cot_self_consistency: predicted=The person walks 6 miles in 90 minutes. | correct=True | error_type=correct
+
+[q5] Tom has 3 red marbles and 4 blue marbles. He gives 2 blue marbles away. How many marbles does he have left in total?
+Gold answer: 5
+  standard: predicted=Tom has 7 marbles left. | correct=False | error_type=calculation_error
+  cot: predicted=Tom has 5 marbles left. | correct=True | error_type=correct
+  cot_self_consistency: predicted=Tom has 5 marbles left. | correct=True | error_type=correct
+
+[q6] If all roses are flowers and some flowers fade quickly, can we conclude that some roses fade quickly? Answer yes or no.
+Gold answer: No
+  standard: predicted=Yes | correct=False | error_type=format_error
+  cot: predicted=Yes, some roses may fade quickly because all roses are a type of flower, and some flowers (including roses) have the property of fading quickly. | correct=False | error_type=other_error
+  cot_self_consistency: predicted=Yes, some roses could fade quickly because all roses are flowers, and some flowers fade quickly. However, it's important to note that not all roses may fade quickly; the statement only implies that there are some roses among the group of flowers that do fade quickly. | correct=False | error_type=reasoning_error
+
+[q7] If every student in the class submitted the assignment and Maya is a student in the class, did Maya submit the assignment? Answer yes or no.
+Gold answer: Yes
+  standard: predicted=Yes | correct=True | error_type=correct
+  cot: predicted=Yes, since every student in the class submitted the assignment and Maya is a student in the class, it can be inferred that Maya also submitted the assignment. | correct=True | error_type=correct
+  cot_self_consistency: predicted=Yes, since every student in the class submitted the assignment, and Maya is a student in the class, it can be inferred that Maya also submitted the assignment. | correct=True | error_type=correct
+
+[q8] A train travels 60 miles in 2 hours. At the same speed, how far will it travel in 5 hours?
+Gold answer: 150
+  standard: predicted=150 miles | correct=True | error_type=correct
+  cot: predicted=The train will travel 150 miles in 5 hours. | correct=True | error_type=correct
+  cot_self_consistency: predicted=The train will travel 150 miles. | correct=True | error_type=correct
+
+[q9] There are 15 trees in a grove. Workers plant trees until there are 21 trees. How many trees did they plant?
+Gold answer: 6
+  standard: predicted=6 | correct=True | error_type=correct
+  cot: predicted=21 - 15 = 6 trees were planted. | correct=True | error_type=correct
+  cot_self_consistency: predicted=They planted 6 trees. | correct=True | error_type=correct

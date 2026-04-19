@@ -1,0 +1,4 @@
+method,n_questions,n_correct,accuracy,calculation_error,reasoning_error,format_error,missing_answer,other_error
+standard,12,6,0.5,5,0,1,0,0
+cot,12,11,0.917,0,0,0,0,1
+cot_self_consistency,12,12,1.0,0,0,0,0,0
