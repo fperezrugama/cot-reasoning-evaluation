@@ -56,3 +56,62 @@ Saves results and generates plots automatically
 ```
 ---
 
+---
+
+```
+
+Each trial folder contains:
+
+summary_results.csv        # Accuracy + error metrics
+question_results.csv      # Per-question outputs
+raw_outputs.jsonl         # Raw model responses
+summary_report.txt        # Human-readable report
+figure_accuracy_by_method.png
+figure_error_types_by_method.png
+
+```
+
+---
+
+## Running Experiments
+
+1. Install dependencies
+
+pip install -r requirements.txt
+
+2. Install and start Ollama
+
+ollama serve
+
+3. Pull a model (example)
+
+ollama pull mistral
+
+4. Run the experiment
+
+#### Quick demo (5 questions):
+
+python cot_experiment.py --demo --model mistral
+
+#### Full run:
+
+python cot_experiment.py --model mistral
+
+#### Run multiple trials:
+
+python cot_experiment.py --model mistral --output results/my_trials/trial_1
+
+python cot_experiment.py --model mistral --output results/my_trials/trial_2
+
+python cot_experiment.py --model mistral --output results/my_trials/trial_3
+
+### Example Results
+
+Across multiple trials, we observe:
+
+* Standard prompting performs poorly on multi-step reasoning
+* Chain-of-Thought significantly improves accuracy
+* Self-consistency improves robustness, but not always beyond CoT
+
+
+
