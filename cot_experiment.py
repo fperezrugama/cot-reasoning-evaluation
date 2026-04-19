@@ -50,6 +50,15 @@ This uses an OpenAI-compatible /chat/completions endpoint, so it can work with:
 # Default question set
 # -------------------------------------------------------------------
 
+"""
+Implementation note:
+I intentionally kept the question set small and manually verifiable so that I could
+inspect model behavior closely and make sure the scoring logic was trustworthy.
+The goal of this experiment is not to build a large benchmark, but to compare how
+different prompting strategies behave on short arithmetic, symbolic, and multi-step
+reasoning tasks that are easy to grade against known answers.
+"""
+
 DEFAULT_QUESTIONS: List[Dict[str, str]] = [
     {
         "id": "q1",
@@ -126,9 +135,9 @@ DEFAULT_QUESTIONS: List[Dict[str, str]] = [
 ]
 
 
-# -------------------------------------------------------------------
+# -----------------------------------
 # Utility helpers
-# -------------------------------------------------------------------
+# -----------------------------------
 
 def load_questions(path: Optional[str], demo: bool = False) -> List[Dict[str, str]]:
     questions = DEFAULT_QUESTIONS
@@ -147,6 +156,14 @@ def ensure_output_dir(path: str) -> None:
 def normalize_text(text: str) -> str:
     return " ".join(str(text).strip().lower().split())
 
+"""
+Implementation note:
+One practical issue I noticed early was that LLMs often do not follow output format
+instructions perfectly. Even when asked to end with 'Final answer: <answer>', the model
+may instead respond with a sentence like 'The cafeteria has 9 apples now.' Because of
+this, I added fallback extraction logic for numbers and yes/no answers so the evaluation
+would reflect the model's actual answer rather than only its formatting compliance.
+"""
 
 def extract_final_answer(output: str) -> str:
     lines = [line.strip() for line in output.splitlines() if line.strip()]
@@ -184,6 +201,13 @@ def is_correct(predicted: str, gold: str) -> bool:
 
     return False
 
+"""
+Implementation note:
+The error labels in this project are intentionally simple. I mainly wanted a rough
+breakdown of whether failures came from arithmetic mistakes, formatting problems, or
+reasoning issues. Since this is a course project rather than a large-scale benchmark,
+the purpose of these labels is interpretability rather than perfect error taxonomy.
+"""
 
 def tag_error(gold: str, predicted: str, raw_output: str) -> str:
     if is_correct(predicted, gold):
@@ -209,6 +233,14 @@ def tag_error(gold: str, predicted: str, raw_output: str) -> str:
 
     return "other_error"
 
+"""
+Implementation note:
+A strict string match turned out to be too brittle for this project. Many model responses
+were semantically correct but phrased as full sentences, which initially caused false
+negatives in evaluation. I added answer canonicalization and numeric matching so that
+correct reasoning outputs like 'They walk 6 miles.' would count as correct for the gold
+answer '6'. This makes the evaluation more faithful to actual model performance.
+"""
 
 def canonicalize_answer(text: str) -> str:
     text = str(text).strip()
@@ -321,6 +353,15 @@ def build_messages(method: str, question: str) -> List[Dict[str, str]]:
 # Experiment core
 # -------------------------------------------------------------------
 
+"""
+Implementation note:
+I included self-consistency because one of the main ideas in the literature is that
+sampling multiple reasoning paths and selecting the majority answer can improve
+reliability. In this implementation, I keep the mechanism simple: generate several
+CoT responses, extract their final answers, and choose the most common one. This is
+meant to approximate self-consistency without overcomplicating the pipeline.
+"""
+
 def run_self_consistency(
     client: ChatClient,
     question: str,
@@ -347,6 +388,13 @@ def run_self_consistency(
     )
     return winner_original, collected
 
+"""
+Implementation note:
+This experiment compares three prompting settings on the exact same question set:
+standard prompting, chain-of-thought prompting, and CoT with self-consistency.
+Keeping the questions fixed across methods was important because I wanted the comparison
+to reflect prompting differences rather than dataset variation.
+"""
 
 def run_experiment(
     client: ChatClient,
@@ -430,6 +478,14 @@ def run_experiment(
 # -------------------------------------------------------------------
 # Summaries and saving
 # -------------------------------------------------------------------
+
+"""
+Implementation note:
+The summary table is the main result view for this project. I report accuracy and a
+small set of error counts because these are the easiest metrics to turn into both a
+paper table and a figure. My intention here was to keep the outputs directly usable
+for the report without needing much extra processing.
+"""
 
 def build_summary(rows: List[Dict]) -> List[Dict]:
     grouped = defaultdict(list)
@@ -551,6 +607,13 @@ def save_summary_report(question_rows: List[Dict], summary_rows: List[Dict], pat
 # Figures
 # -------------------------------------------------------------------
 
+"""
+Implementation note:
+I added automatic figure generation because I wanted the experiment outputs to be
+paper-ready. Having the plots generated directly from the saved summaries makes the
+workflow reproducible.
+"""
+
 def make_accuracy_figure(summary_rows: List[Dict], path: str) -> None:
     methods = [row["method"] for row in summary_rows]
     accuracies = [row["accuracy"] for row in summary_rows]
@@ -601,6 +664,14 @@ def make_error_figure(summary_rows: List[Dict], path: str) -> None:
 # -------------------------------------------------------------------
 # Main
 # -------------------------------------------------------------------
+
+"""
+Implementation note:
+I kept the main entry point simple on purpose. My priority for this project was to get
+a stable experimental pipeline running end-to-end, save the results, and make the setup
+easy to rerun for multiple trials. A cleaner modular refactor can come later, but for
+the first working version I preferred reliability over architectural complexity.
+"""
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
